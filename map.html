@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<!--
+	@license
+	Copyright 2019 Google LLC. All Rights Reserved.
+	SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+	
+	<head>
+		<title>Geolocation</title>
+		
+		<style>
+			#map {
+			height: 100%;
+			}
+			
+			/* 
+			* Optional: Makes the sample page fill the window. 
+			*/
+			html,
+			body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			}
+			
+			.custom-map-control-button {
+			background-color: #fff;
+			border: 0;
+			border-radius: 2px;
+			box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+			margin: 10px;
+			padding: 0 0.5em;
+			font: 400 18px Roboto, Arial, sans-serif;
+			overflow: hidden;
+			height: 40px;
+			cursor: pointer;
+			}
+			.custom-map-control-button:hover {
+			background: rgb(235, 235, 235);
+			}
+		</style>
+		
+		<script>
+			/**
+				* @license
+				* Copyright 2019 Google LLC. All Rights Reserved.
+				* SPDX-License-Identifier: Apache-2.0
+			*/
+			// Note: This example requires that you consent to location sharing when
+			// prompted by your browser. If you see the error "The Geolocation service
+			// failed.", it means you probably did not give permission for the browser to
+			// locate you.
+			let map, infoWindow;
+			
+			function initMap() {
+				map = new google.maps.Map(document.getElementById("map"), {
+					center: { lat: 35.7001, lng: 128.4049 },
+					zoom: 15,
+					mapTypeId: "terrain",
+				});
+				
+				infoWindow = new google.maps.InfoWindow();
+				
+				const locationButton = document.createElement("button");
+				
+				locationButton.textContent = "Pan to Current Location";
+				locationButton.classList.add("custom-map-control-button");
+				map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+				locationButton.addEventListener("click", () => {
+					// Try HTML5 geolocation.
+					if (navigator.geolocation) {
+						navigator.geolocation.getCurrentPosition(
+						(position) => {
+							const pos = {
+								lat: position.coords.latitude,
+								lng: position.coords.longitude,
+							};
+							
+							infoWindow.setPosition(pos);
+							infoWindow.setContent("Location found.");
+							infoWindow.open(map);
+							map.setCenter(pos);
+						},
+						() => {
+							handleLocationError(true, infoWindow, map.getCenter());
+						}
+						);
+						} else {
+						// Browser doesn't support Geolocation
+						handleLocationError(false, infoWindow, map.getCenter());
+					}
+				});
+
+
+
+
+const Coords0 = [
+{ lat: 35.7019, lng: 128.4125 },
+{ lat: 35.7037, lng: 128.4126 },
+{ lat: 35.7037, lng: 128.4133 },
+{ lat: 35.7037, lng: 128.4148 },
+{ lat: 35.7040, lng: 128.4160 },
+{ lat: 35.7019, lng: 128.4174 },
+{ lat: 35.7017, lng: 128.4170 },
+{ lat: 35.7019, lng: 128.4170 },
+{ lat: 35.7019, lng: 128.4125 },
+];
+const poly0 = new google.maps.Polygon({paths: Coords0, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly0.setMap(map);
+const Coords1 = [
+{ lat: 35.7020, lng: 128.4077 },
+{ lat: 35.7023, lng: 128.4080 },
+{ lat: 35.7032, lng: 128.4095 },
+{ lat: 35.7035, lng: 128.4095 },
+{ lat: 35.7038, lng: 128.4101 },
+{ lat: 35.7037, lng: 128.4126 },
+{ lat: 35.7019, lng: 128.4125 },
+{ lat: 35.7020, lng: 128.4077 },
+];
+const poly1 = new google.maps.Polygon({paths: Coords1, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly1.setMap(map);
+const Coords2 = [
+{ lat: 35.7027, lng: 128.4197 },
+{ lat: 35.7034, lng: 128.4200 },
+{ lat: 35.7043, lng: 128.4204 },
+{ lat: 35.7051, lng: 128.4206 },
+{ lat: 35.7054, lng: 128.4217 },
+{ lat: 35.7058, lng: 128.4226 },
+{ lat: 35.7068, lng: 128.4237 },
+{ lat: 35.7072, lng: 128.4239 },
+{ lat: 35.7075, lng: 128.4240 },
+{ lat: 35.7072, lng: 128.4247 },
+{ lat: 35.7072, lng: 128.4250 },
+{ lat: 35.7071, lng: 128.4251 },
+{ lat: 35.7064, lng: 128.4246 },
+{ lat: 35.7052, lng: 128.4235 },
+{ lat: 35.7049, lng: 128.4230 },
+{ lat: 35.7031, lng: 128.4212 },
+{ lat: 35.7027, lng: 128.4197 },
+];
+const poly2 = new google.maps.Polygon({paths: Coords2, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly2.setMap(map);
+const Coords3 = [
+{ lat: 35.7018, lng: 128.4190 },
+{ lat: 35.7018, lng: 128.4179 },
+{ lat: 35.7017, lng: 128.4180 },
+{ lat: 35.7016, lng: 128.4176 },
+{ lat: 35.7019, lng: 128.4174 },
+{ lat: 35.7040, lng: 128.4160 },
+{ lat: 35.7051, lng: 128.4206 },
+{ lat: 35.7043, lng: 128.4204 },
+{ lat: 35.7034, lng: 128.4200 },
+{ lat: 35.7027, lng: 128.4196 },
+{ lat: 35.7025, lng: 128.4194 },
+{ lat: 35.7023, lng: 128.4193 },
+{ lat: 35.7022, lng: 128.4192 },
+{ lat: 35.7018, lng: 128.4190 },
+];
+const poly3 = new google.maps.Polygon({paths: Coords3, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly3.setMap(map);
+const Coords4 = [
+{ lat: 35.7086, lng: 128.4257 },
+{ lat: 35.7088, lng: 128.4247 },
+{ lat: 35.7094, lng: 128.4249 },
+{ lat: 35.7099, lng: 128.4251 },
+{ lat: 35.7111, lng: 128.4251 },
+{ lat: 35.7122, lng: 128.4250 },
+{ lat: 35.7128, lng: 128.4249 },
+{ lat: 35.7137, lng: 128.4258 },
+{ lat: 35.7136, lng: 128.4262 },
+{ lat: 35.7130, lng: 128.4261 },
+{ lat: 35.7121, lng: 128.4261 },
+{ lat: 35.7112, lng: 128.4261 },
+{ lat: 35.7107, lng: 128.4262 },
+{ lat: 35.7099, lng: 128.4261 },
+{ lat: 35.7085, lng: 128.4258 },
+{ lat: 35.7086, lng: 128.4257 },
+];
+const poly4 = new google.maps.Polygon({paths: Coords4, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly4.setMap(map);
+const Coords5 = [
+{ lat: 35.7148, lng: 128.4253 },
+{ lat: 35.7140, lng: 128.4229 },
+{ lat: 35.7141, lng: 128.4220 },
+{ lat: 35.7155, lng: 128.4208 },
+{ lat: 35.7157, lng: 128.4199 },
+{ lat: 35.7164, lng: 128.4214 },
+{ lat: 35.7171, lng: 128.4223 },
+{ lat: 35.7174, lng: 128.4227 },
+{ lat: 35.7171, lng: 128.4239 },
+{ lat: 35.7169, lng: 128.4241 },
+{ lat: 35.7169, lng: 128.4242 },
+{ lat: 35.7148, lng: 128.4253 },
+];
+const poly5 = new google.maps.Polygon({paths: Coords5, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly5.setMap(map);
+const Coords6 = [
+{ lat: 35.7171, lng: 128.4241 },
+{ lat: 35.7174, lng: 128.4234 },
+{ lat: 35.7175, lng: 128.4230 },
+{ lat: 35.7176, lng: 128.4225 },
+{ lat: 35.7183, lng: 128.4214 },
+{ lat: 35.7192, lng: 128.4211 },
+{ lat: 35.7197, lng: 128.4209 },
+{ lat: 35.7200, lng: 128.4206 },
+{ lat: 35.7199, lng: 128.4210 },
+{ lat: 35.7201, lng: 128.4225 },
+{ lat: 35.7171, lng: 128.4241 },
+];
+const poly6 = new google.maps.Polygon({paths: Coords6, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly6.setMap(map);
+const Coords7 = [
+{ lat: 35.7175, lng: 128.4239 },
+{ lat: 35.7181, lng: 128.4255 },
+{ lat: 35.7189, lng: 128.4250 },
+{ lat: 35.7204, lng: 128.4242 },
+{ lat: 35.7207, lng: 128.4240 },
+{ lat: 35.7202, lng: 128.4225 },
+{ lat: 35.7175, lng: 128.4239 },
+];
+const poly7 = new google.maps.Polygon({paths: Coords7, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly7.setMap(map);
+const Coords8 = [
+{ lat: 35.7201, lng: 128.4225 },
+{ lat: 35.7199, lng: 128.4210 },
+{ lat: 35.7200, lng: 128.4206 },
+{ lat: 35.7201, lng: 128.4204 },
+{ lat: 35.7199, lng: 128.4191 },
+{ lat: 35.7200, lng: 128.4181 },
+{ lat: 35.7206, lng: 128.4174 },
+{ lat: 35.7208, lng: 128.4174 },
+{ lat: 35.7215, lng: 128.4177 },
+{ lat: 35.7224, lng: 128.4182 },
+{ lat: 35.7223, lng: 128.4187 },
+{ lat: 35.7220, lng: 128.4196 },
+{ lat: 35.7217, lng: 128.4202 },
+{ lat: 35.7215, lng: 128.4206 },
+{ lat: 35.7214, lng: 128.4213 },
+{ lat: 35.7216, lng: 128.4217 },
+{ lat: 35.7201, lng: 128.4225 },
+];
+const poly8 = new google.maps.Polygon({paths: Coords8, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly8.setMap(map);
+const Coords9 = [
+{ lat: 35.7216, lng: 128.4217 },
+{ lat: 35.7214, lng: 128.4213 },
+{ lat: 35.7215, lng: 128.4206 },
+{ lat: 35.7217, lng: 128.4202 },
+{ lat: 35.7217, lng: 128.4202 },
+{ lat: 35.7217, lng: 128.4202 },
+{ lat: 35.7217, lng: 128.4202 },
+{ lat: 35.7217, lng: 128.4202 },
+{ lat: 35.7217, lng: 128.4202 },
+{ lat: 35.7217, lng: 128.4202 },
+{ lat: 35.7220, lng: 128.4196 },
+{ lat: 35.7223, lng: 128.4187 },
+{ lat: 35.7224, lng: 128.4182 },
+{ lat: 35.7226, lng: 128.4189 },
+{ lat: 35.7226, lng: 128.4196 },
+{ lat: 35.7230, lng: 128.4202 },
+{ lat: 35.7229, lng: 128.4206 },
+{ lat: 35.7229, lng: 128.4210 },
+{ lat: 35.7228, lng: 128.4211 },
+{ lat: 35.7227, lng: 128.4211 },
+{ lat: 35.7216, lng: 128.4217 },
+];
+const poly9 = new google.maps.Polygon({paths: Coords9, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly9.setMap(map);
+const Coords10 = [
+{ lat: 35.7107, lng: 128.4216 },
+{ lat: 35.7114, lng: 128.4222 },
+{ lat: 35.7123, lng: 128.4222 },
+{ lat: 35.7125, lng: 128.4223 },
+{ lat: 35.7126, lng: 128.4228 },
+{ lat: 35.7128, lng: 128.4249 },
+{ lat: 35.7122, lng: 128.4250 },
+{ lat: 35.7111, lng: 128.4251 },
+{ lat: 35.7099, lng: 128.4251 },
+{ lat: 35.7094, lng: 128.4249 },
+{ lat: 35.7088, lng: 128.4247 },
+{ lat: 35.7086, lng: 128.4257 },
+{ lat: 35.7079, lng: 128.4253 },
+{ lat: 35.7078, lng: 128.4253 },
+{ lat: 35.7072, lng: 128.4250 },
+{ lat: 35.7072, lng: 128.4247 },
+{ lat: 35.7075, lng: 128.4240 },
+{ lat: 35.7078, lng: 128.4240 },
+{ lat: 35.7083, lng: 128.4235 },
+{ lat: 35.7092, lng: 128.4231 },
+{ lat: 35.7097, lng: 128.4229 },
+{ lat: 35.7101, lng: 128.4229 },
+{ lat: 35.7105, lng: 128.4229 },
+{ lat: 35.7107, lng: 128.4216 },
+];
+const poly10 = new google.maps.Polygon({paths: Coords10, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly10.setMap(map);
+const Coords11 = [
+{ lat: 35.7114, lng: 128.4222 },
+{ lat: 35.7107, lng: 128.4216 },
+{ lat: 35.7106, lng: 128.4195 },
+{ lat: 35.7109, lng: 128.4188 },
+{ lat: 35.7112, lng: 128.4181 },
+{ lat: 35.7114, lng: 128.4170 },
+{ lat: 35.7113, lng: 128.4164 },
+{ lat: 35.7123, lng: 128.4156 },
+{ lat: 35.7127, lng: 128.4149 },
+{ lat: 35.7134, lng: 128.4136 },
+{ lat: 35.7136, lng: 128.4138 },
+{ lat: 35.7139, lng: 128.4155 },
+{ lat: 35.7139, lng: 128.4162 },
+{ lat: 35.7141, lng: 128.4169 },
+{ lat: 35.7147, lng: 128.4177 },
+{ lat: 35.7149, lng: 128.4180 },
+{ lat: 35.7155, lng: 128.4186 },
+{ lat: 35.7156, lng: 128.4193 },
+{ lat: 35.7157, lng: 128.4199 },
+{ lat: 35.7155, lng: 128.4208 },
+{ lat: 35.7141, lng: 128.4220 },
+{ lat: 35.7140, lng: 128.4229 },
+{ lat: 35.7148, lng: 128.4253 },
+{ lat: 35.7137, lng: 128.4258 },
+{ lat: 35.7128, lng: 128.4249 },
+{ lat: 35.7126, lng: 128.4228 },
+{ lat: 35.7125, lng: 128.4223 },
+{ lat: 35.7123, lng: 128.4222 },
+{ lat: 35.7114, lng: 128.4222 },
+];
+const poly11 = new google.maps.Polygon({paths: Coords11, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly11.setMap(map);
+const Coords12 = [
+{ lat: 35.7035, lng: 128.4095 },
+{ lat: 35.7053, lng: 128.4085 },
+{ lat: 35.7055, lng: 128.4087 },
+{ lat: 35.7059, lng: 128.4088 },
+{ lat: 35.7065, lng: 128.4090 },
+{ lat: 35.7069, lng: 128.4091 },
+{ lat: 35.7072, lng: 128.4090 },
+{ lat: 35.7075, lng: 128.4089 },
+{ lat: 35.7080, lng: 128.4090 },
+{ lat: 35.7085, lng: 128.4091 },
+{ lat: 35.7089, lng: 128.4089 },
+{ lat: 35.7097, lng: 128.4088 },
+{ lat: 35.7106, lng: 128.4112 },
+{ lat: 35.7109, lng: 128.4116 },
+{ lat: 35.7112, lng: 128.4121 },
+{ lat: 35.7117, lng: 128.4128 },
+{ lat: 35.7124, lng: 128.4132 },
+{ lat: 35.7129, lng: 128.4134 },
+{ lat: 35.7134, lng: 128.4136 },
+{ lat: 35.7127, lng: 128.4149 },
+{ lat: 35.7123, lng: 128.4156 },
+{ lat: 35.7113, lng: 128.4164 },
+{ lat: 35.7114, lng: 128.4170 },
+{ lat: 35.7112, lng: 128.4181 },
+{ lat: 35.7109, lng: 128.4188 },
+{ lat: 35.7106, lng: 128.4195 },
+{ lat: 35.7106, lng: 128.4203 },
+{ lat: 35.7107, lng: 128.4216 },
+{ lat: 35.7105, lng: 128.4229 },
+{ lat: 35.7101, lng: 128.4229 },
+{ lat: 35.7097, lng: 128.4229 },
+{ lat: 35.7083, lng: 128.4235 },
+{ lat: 35.7078, lng: 128.4240 },
+{ lat: 35.7072, lng: 128.4239 },
+{ lat: 35.7068, lng: 128.4237 },
+{ lat: 35.7058, lng: 128.4226 },
+{ lat: 35.7054, lng: 128.4217 },
+{ lat: 35.7051, lng: 128.4206 },
+{ lat: 35.7037, lng: 128.4148 },
+{ lat: 35.7037, lng: 128.4133 },
+{ lat: 35.7038, lng: 128.4101 },
+{ lat: 35.7035, lng: 128.4095 },
+];
+const poly12 = new google.maps.Polygon({paths: Coords12, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly12.setMap(map);
+const Coords13 = [
+{ lat: 35.7169, lng: 128.4242 },
+{ lat: 35.7171, lng: 128.4241 },
+{ lat: 35.7174, lng: 128.4234 },
+{ lat: 35.7175, lng: 128.4230 },
+{ lat: 35.7176, lng: 128.4225 },
+{ lat: 35.7183, lng: 128.4214 },
+{ lat: 35.7192, lng: 128.4211 },
+{ lat: 35.7197, lng: 128.4209 },
+{ lat: 35.7200, lng: 128.4206 },
+{ lat: 35.7200, lng: 128.4206 },
+{ lat: 35.7200, lng: 128.4206 },
+{ lat: 35.7200, lng: 128.4206 },
+{ lat: 35.7200, lng: 128.4206 },
+{ lat: 35.7201, lng: 128.4204 },
+{ lat: 35.7201, lng: 128.4201 },
+{ lat: 35.7199, lng: 128.4191 },
+{ lat: 35.7200, lng: 128.4181 },
+{ lat: 35.7206, lng: 128.4174 },
+{ lat: 35.7208, lng: 128.4174 },
+{ lat: 35.7207, lng: 128.4165 },
+{ lat: 35.7205, lng: 128.4159 },
+{ lat: 35.7204, lng: 128.4151 },
+{ lat: 35.7205, lng: 128.4142 },
+{ lat: 35.7208, lng: 128.4130 },
+{ lat: 35.7211, lng: 128.4123 },
+{ lat: 35.7214, lng: 128.4107 },
+{ lat: 35.7217, lng: 128.4102 },
+{ lat: 35.7218, lng: 128.4099 },
+{ lat: 35.7223, lng: 128.4097 },
+{ lat: 35.7227, lng: 128.4090 },
+{ lat: 35.7225, lng: 128.4089 },
+{ lat: 35.7217, lng: 128.4083 },
+{ lat: 35.7206, lng: 128.4074 },
+{ lat: 35.7200, lng: 128.4059 },
+{ lat: 35.7197, lng: 128.4056 },
+{ lat: 35.7194, lng: 128.4050 },
+{ lat: 35.7193, lng: 128.4044 },
+{ lat: 35.7189, lng: 128.4035 },
+{ lat: 35.7183, lng: 128.4034 },
+{ lat: 35.7177, lng: 128.4022 },
+{ lat: 35.7174, lng: 128.4020 },
+{ lat: 35.7164, lng: 128.4033 },
+{ lat: 35.7159, lng: 128.4036 },
+{ lat: 35.7155, lng: 128.4035 },
+{ lat: 35.7151, lng: 128.4036 },
+{ lat: 35.7142, lng: 128.4037 },
+{ lat: 35.7139, lng: 128.4036 },
+{ lat: 35.7135, lng: 128.4034 },
+{ lat: 35.7127, lng: 128.4037 },
+{ lat: 35.7123, lng: 128.4043 },
+{ lat: 35.7120, lng: 128.4046 },
+{ lat: 35.7119, lng: 128.4050 },
+{ lat: 35.7113, lng: 128.4058 },
+{ lat: 35.7110, lng: 128.4062 },
+{ lat: 35.7108, lng: 128.4070 },
+{ lat: 35.7102, lng: 128.4075 },
+{ lat: 35.7098, lng: 128.4082 },
+{ lat: 35.7097, lng: 128.4088 },
+{ lat: 35.7106, lng: 128.4112 },
+{ lat: 35.7109, lng: 128.4116 },
+{ lat: 35.7112, lng: 128.4121 },
+{ lat: 35.7117, lng: 128.4128 },
+{ lat: 35.7124, lng: 128.4132 },
+{ lat: 35.7129, lng: 128.4134 },
+{ lat: 35.7134, lng: 128.4136 },
+{ lat: 35.7136, lng: 128.4138 },
+{ lat: 35.7139, lng: 128.4155 },
+{ lat: 35.7139, lng: 128.4162 },
+{ lat: 35.7141, lng: 128.4169 },
+{ lat: 35.7147, lng: 128.4177 },
+{ lat: 35.7149, lng: 128.4180 },
+{ lat: 35.7155, lng: 128.4186 },
+{ lat: 35.7156, lng: 128.4193 },
+{ lat: 35.7157, lng: 128.4199 },
+{ lat: 35.7164, lng: 128.4214 },
+{ lat: 35.7171, lng: 128.4223 },
+{ lat: 35.7174, lng: 128.4227 },
+{ lat: 35.7171, lng: 128.4239 },
+{ lat: 35.7169, lng: 128.4241 },
+{ lat: 35.7169, lng: 128.4242 },
+];
+const poly13 = new google.maps.Polygon({paths: Coords13, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly13.setMap(map);
+const Coords14 = [
+{ lat: 35.7228, lng: 128.4212 },
+{ lat: 35.7230, lng: 128.4212 },
+{ lat: 35.7241, lng: 128.4206 },
+{ lat: 35.7242, lng: 128.4203 },
+{ lat: 35.7247, lng: 128.4204 },
+{ lat: 35.7253, lng: 128.4203 },
+{ lat: 35.7250, lng: 128.4193 },
+{ lat: 35.7248, lng: 128.4186 },
+{ lat: 35.7244, lng: 128.4181 },
+{ lat: 35.7244, lng: 128.4174 },
+{ lat: 35.7246, lng: 128.4170 },
+{ lat: 35.7248, lng: 128.4167 },
+{ lat: 35.7251, lng: 128.4162 },
+{ lat: 35.7250, lng: 128.4158 },
+{ lat: 35.7246, lng: 128.4152 },
+{ lat: 35.7243, lng: 128.4142 },
+{ lat: 35.7241, lng: 128.4135 },
+{ lat: 35.7241, lng: 128.4128 },
+{ lat: 35.7239, lng: 128.4121 },
+{ lat: 35.7237, lng: 128.4115 },
+{ lat: 35.7236, lng: 128.4098 },
+{ lat: 35.7237, lng: 128.4087 },
+{ lat: 35.7232, lng: 128.4089 },
+{ lat: 35.7227, lng: 128.4090 },
+{ lat: 35.7223, lng: 128.4097 },
+{ lat: 35.7218, lng: 128.4099 },
+{ lat: 35.7217, lng: 128.4102 },
+{ lat: 35.7214, lng: 128.4107 },
+{ lat: 35.7212, lng: 128.4118 },
+{ lat: 35.7211, lng: 128.4123 },
+{ lat: 35.7208, lng: 128.4130 },
+{ lat: 35.7205, lng: 128.4142 },
+{ lat: 35.7204, lng: 128.4151 },
+{ lat: 35.7205, lng: 128.4159 },
+{ lat: 35.7207, lng: 128.4165 },
+{ lat: 35.7208, lng: 128.4174 },
+{ lat: 35.7215, lng: 128.4177 },
+{ lat: 35.7221, lng: 128.4180 },
+{ lat: 35.7224, lng: 128.4182 },
+{ lat: 35.7226, lng: 128.4189 },
+{ lat: 35.7226, lng: 128.4196 },
+{ lat: 35.7227, lng: 128.4199 },
+{ lat: 35.7230, lng: 128.4202 },
+{ lat: 35.7229, lng: 128.4206 },
+{ lat: 35.7229, lng: 128.4210 },
+{ lat: 35.7228, lng: 128.4212 },
+];
+const poly14 = new google.maps.Polygon({paths: Coords14, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly14.setMap(map);
+const Coords15 = [
+{ lat: 35.7018, lng: 128.4192 },
+{ lat: 35.7021, lng: 128.4192 },
+{ lat: 35.7024, lng: 128.4195 },
+{ lat: 35.7025, lng: 128.4195 },
+{ lat: 35.7026, lng: 128.4198 },
+{ lat: 35.7030, lng: 128.4213 },
+{ lat: 35.7033, lng: 128.4216 },
+{ lat: 35.7044, lng: 128.4226 },
+{ lat: 35.7041, lng: 128.4232 },
+{ lat: 35.7036, lng: 128.4257 },
+{ lat: 35.7009, lng: 128.4221 },
+{ lat: 35.7011, lng: 128.4211 },
+{ lat: 35.7012, lng: 128.4210 },
+{ lat: 35.7014, lng: 128.4200 },
+{ lat: 35.7013, lng: 128.4198 },
+{ lat: 35.7011, lng: 128.4198 },
+{ lat: 35.7012, lng: 128.4192 },
+{ lat: 35.7018, lng: 128.4192 },
+];
+const poly15 = new google.maps.Polygon({paths: Coords15, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly15.setMap(map);
+const Coords16 = [
+{ lat: 35.7045, lng: 128.4227 },
+{ lat: 35.7049, lng: 128.4231 },
+{ lat: 35.7051, lng: 128.4235 },
+{ lat: 35.7052, lng: 128.4238 },
+{ lat: 35.7055, lng: 128.4242 },
+{ lat: 35.7059, lng: 128.4246 },
+{ lat: 35.7070, lng: 128.4253 },
+{ lat: 35.7071, lng: 128.4252 },
+{ lat: 35.7078, lng: 128.4258 },
+{ lat: 35.7085, lng: 128.4262 },
+{ lat: 35.7082, lng: 128.4278 },
+{ lat: 35.7081, lng: 128.4293 },
+{ lat: 35.7075, lng: 128.4293 },
+{ lat: 35.7057, lng: 128.4282 },
+{ lat: 35.7048, lng: 128.4273 },
+{ lat: 35.7036, lng: 128.4257 },
+{ lat: 35.7041, lng: 128.4232 },
+{ lat: 35.7044, lng: 128.4226 },
+{ lat: 35.7045, lng: 128.4227 },
+];
+const poly16 = new google.maps.Polygon({paths: Coords16, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly16.setMap(map);
+const Coords17 = [
+{ lat: 35.7085, lng: 128.4262 },
+{ lat: 35.7093, lng: 128.4267 },
+{ lat: 35.7104, lng: 128.4269 },
+{ lat: 35.7116, lng: 128.4269 },
+{ lat: 35.7130, lng: 128.4268 },
+{ lat: 35.7132, lng: 128.4268 },
+{ lat: 35.7137, lng: 128.4267 },
+{ lat: 35.7140, lng: 128.4267 },
+{ lat: 35.7143, lng: 128.4266 },
+{ lat: 35.7144, lng: 128.4268 },
+{ lat: 35.7139, lng: 128.4271 },
+{ lat: 35.7139, lng: 128.4278 },
+{ lat: 35.7141, lng: 128.4308 },
+{ lat: 35.7133, lng: 128.4307 },
+{ lat: 35.7105, lng: 128.4300 },
+{ lat: 35.7085, lng: 128.4296 },
+{ lat: 35.7081, lng: 128.4293 },
+{ lat: 35.7082, lng: 128.4278 },
+{ lat: 35.7085, lng: 128.4262 },
+{ lat: 35.7085, lng: 128.4262 },
+];
+const poly17 = new google.maps.Polygon({paths: Coords17, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly17.setMap(map);
+const Coords18 = [
+{ lat: 35.7141, lng: 128.4264 },
+{ lat: 35.7140, lng: 128.4263 },
+{ lat: 35.7138, lng: 128.4259 },
+{ lat: 35.7148, lng: 128.4253 },
+{ lat: 35.7175, lng: 128.4239 },
+{ lat: 35.7181, lng: 128.4255 },
+{ lat: 35.7189, lng: 128.4250 },
+{ lat: 35.7204, lng: 128.4242 },
+{ lat: 35.7217, lng: 128.4270 },
+{ lat: 35.7205, lng: 128.4282 },
+{ lat: 35.7192, lng: 128.4293 },
+{ lat: 35.7181, lng: 128.4298 },
+{ lat: 35.7168, lng: 128.4259 },
+{ lat: 35.7157, lng: 128.4262 },
+{ lat: 35.7144, lng: 128.4268 },
+{ lat: 35.7143, lng: 128.4266 },
+{ lat: 35.7141, lng: 128.4264 },
+];
+const poly18 = new google.maps.Polygon({paths: Coords18, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly18.setMap(map);
+const Coords19 = [
+{ lat: 35.7144, lng: 128.4268 },
+{ lat: 35.7139, lng: 128.4271 },
+{ lat: 35.7139, lng: 128.4278 },
+{ lat: 35.7141, lng: 128.4305 },
+{ lat: 35.7141, lng: 128.4308 },
+{ lat: 35.7146, lng: 128.4308 },
+{ lat: 35.7156, lng: 128.4306 },
+{ lat: 35.7167, lng: 128.4304 },
+{ lat: 35.7181, lng: 128.4298 },
+{ lat: 35.7168, lng: 128.4259 },
+{ lat: 35.7157, lng: 128.4262 },
+{ lat: 35.7151, lng: 128.4265 },
+{ lat: 35.7144, lng: 128.4268 },
+];
+const poly19 = new google.maps.Polygon({paths: Coords19, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly19.setMap(map);
+const Coords20 = [
+{ lat: 35.7215, lng: 128.4218 },
+{ lat: 35.7228, lng: 128.4212 },
+{ lat: 35.7232, lng: 128.4221 },
+{ lat: 35.7228, lng: 128.4225 },
+{ lat: 35.7239, lng: 128.4248 },
+{ lat: 35.7217, lng: 128.4270 },
+{ lat: 35.7204, lng: 128.4242 },
+{ lat: 35.7207, lng: 128.4240 },
+{ lat: 35.7202, lng: 128.4225 },
+{ lat: 35.7215, lng: 128.4218 },
+];
+const poly20 = new google.maps.Polygon({paths: Coords20, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly20.setMap(map);
+const Coords21 = [
+{ lat: 35.7228, lng: 128.4212 },
+{ lat: 35.7230, lng: 128.4212 },
+{ lat: 35.7241, lng: 128.4206 },
+{ lat: 35.7242, lng: 128.4203 },
+{ lat: 35.7247, lng: 128.4204 },
+{ lat: 35.7253, lng: 128.4203 },
+{ lat: 35.7259, lng: 128.4223 },
+{ lat: 35.7239, lng: 128.4248 },
+{ lat: 35.7228, lng: 128.4225 },
+{ lat: 35.7232, lng: 128.4221 },
+{ lat: 35.7228, lng: 128.4212 },
+];
+const poly21 = new google.maps.Polygon({paths: Coords21, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly21.setMap(map);
+const Coords22 = [
+{ lat: 35.7018, lng: 128.4148 },
+{ lat: 35.6972, lng: 128.4147 },
+{ lat: 35.6973, lng: 128.4157 },
+{ lat: 35.6975, lng: 128.4166 },
+{ lat: 35.6977, lng: 128.4172 },
+{ lat: 35.6981, lng: 128.4182 },
+{ lat: 35.6988, lng: 128.4195 },
+{ lat: 35.7016, lng: 128.4176 },
+{ lat: 35.7019, lng: 128.4174 },
+{ lat: 35.7017, lng: 128.4170 },
+{ lat: 35.7018, lng: 128.4148 },
+];
+const poly22 = new google.maps.Polygon({paths: Coords22, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly22.setMap(map);
+const Coords23 = [
+{ lat: 35.7018, lng: 128.4125 },
+{ lat: 35.6973, lng: 128.4124 },
+{ lat: 35.6972, lng: 128.4131 },
+{ lat: 35.6972, lng: 128.4137 },
+{ lat: 35.6972, lng: 128.4147 },
+{ lat: 35.7018, lng: 128.4148 },
+{ lat: 35.7018, lng: 128.4125 },
+];
+const poly23 = new google.maps.Polygon({paths: Coords23, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly23.setMap(map);
+const Coords24 = [
+{ lat: 35.7019, lng: 128.4102 },
+{ lat: 35.6995, lng: 128.4101 },
+{ lat: 35.6980, lng: 128.4092 },
+{ lat: 35.6973, lng: 128.4124 },
+{ lat: 35.7018, lng: 128.4125 },
+{ lat: 35.7019, lng: 128.4102 },
+];
+const poly24 = new google.maps.Polygon({paths: Coords24, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly24.setMap(map);
+const Coords25 = [
+{ lat: 35.7019, lng: 128.4079 },
+{ lat: 35.7019, lng: 128.4076 },
+{ lat: 35.7009, lng: 128.4066 },
+{ lat: 35.7004, lng: 128.4078 },
+{ lat: 35.6995, lng: 128.4101 },
+{ lat: 35.7019, lng: 128.4102 },
+{ lat: 35.7019, lng: 128.4079 },
+];
+const poly25 = new google.maps.Polygon({paths: Coords25, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly25.setMap(map);
+const Coords26 = [
+{ lat: 35.7017, lng: 128.4183 },
+{ lat: 35.7017, lng: 128.4180 },
+{ lat: 35.7016, lng: 128.4176 },
+{ lat: 35.6988, lng: 128.4195 },
+{ lat: 35.7003, lng: 128.4215 },
+{ lat: 35.7007, lng: 128.4196 },
+{ lat: 35.7009, lng: 128.4197 },
+{ lat: 35.7010, lng: 128.4192 },
+{ lat: 35.7012, lng: 128.4190 },
+{ lat: 35.7017, lng: 128.4190 },
+{ lat: 35.7017, lng: 128.4183 },
+];
+const poly26 = new google.maps.Polygon({paths: Coords26, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly26.setMap(map);
+const Coords27 = [
+{ lat: 35.6999, lng: 128.4050 },
+{ lat: 35.6998, lng: 128.4042 },
+{ lat: 35.6998, lng: 128.4041 },
+{ lat: 35.6998, lng: 128.4036 },
+{ lat: 35.6996, lng: 128.4033 },
+{ lat: 35.6994, lng: 128.4036 },
+{ lat: 35.6992, lng: 128.4039 },
+{ lat: 35.6990, lng: 128.4047 },
+{ lat: 35.6985, lng: 128.4067 },
+{ lat: 35.6980, lng: 128.4092 },
+{ lat: 35.6995, lng: 128.4101 },
+{ lat: 35.7004, lng: 128.4078 },
+{ lat: 35.7009, lng: 128.4066 },
+{ lat: 35.6999, lng: 128.4056 },
+{ lat: 35.6999, lng: 128.4054 },
+{ lat: 35.6999, lng: 128.4050 },
+];
+const poly27 = new google.maps.Polygon({paths: Coords27, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly27.setMap(map);
+const Coords28 = [
+{ lat: 35.7001, lng: 128.4049 },
+{ lat: 35.7000, lng: 128.4038 },
+{ lat: 35.6999, lng: 128.4036 },
+{ lat: 35.6997, lng: 128.4032 },
+{ lat: 35.6999, lng: 128.4030 },
+{ lat: 35.7001, lng: 128.4029 },
+{ lat: 35.7005, lng: 128.4028 },
+{ lat: 35.7014, lng: 128.4025 },
+{ lat: 35.7022, lng: 128.4023 },
+{ lat: 35.7025, lng: 128.4028 },
+{ lat: 35.7026, lng: 128.4031 },
+{ lat: 35.7026, lng: 128.4037 },
+{ lat: 35.7026, lng: 128.4039 },
+{ lat: 35.7030, lng: 128.4047 },
+{ lat: 35.7031, lng: 128.4054 },
+{ lat: 35.7035, lng: 128.4058 },
+{ lat: 35.7039, lng: 128.4061 },
+{ lat: 35.7040, lng: 128.4065 },
+{ lat: 35.7042, lng: 128.4068 },
+{ lat: 35.7044, lng: 128.4073 },
+{ lat: 35.7046, lng: 128.4076 },
+{ lat: 35.7048, lng: 128.4078 },
+{ lat: 35.7053, lng: 128.4085 },
+{ lat: 35.7035, lng: 128.4095 },
+{ lat: 35.7032, lng: 128.4094 },
+{ lat: 35.7024, lng: 128.4079 },
+{ lat: 35.7021, lng: 128.4076 },
+{ lat: 35.7002, lng: 128.4056 },
+{ lat: 35.7001, lng: 128.4054 },
+{ lat: 35.7001, lng: 128.4049 },
+];
+const poly28 = new google.maps.Polygon({paths: Coords28, strokeColor: "blue", strokeOpacity: 0.8, strokeWeight: 2, fillColor: "orange", fillOpacity: 0.2,});
+poly28.setMap(map);
+
+
+
+			}
+			
+			function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+				infoWindow.setPosition(pos);
+				infoWindow.setContent(
+				browserHasGeolocation
+				? "Error: The Geolocation service failed."
+				: "Error: Your browser doesn't support geolocation."
+				);
+				infoWindow.open(map);
+			}
+			
+			window.initMap = initMap;
+			
+		</script>
+		<!-- jsFiddle will insert css and js -->
+	</head>
+	
+	<body>
+		<div id="map"></div>
+		
+		<!-- 
+			The `defer` attribute causes the callback to execute after the full HTML
+			document has been parsed. For non-blocking uses, avoiding race conditions,
+			and consistent behavior across browsers, consider loading using Promises
+			with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+		-->
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBL6USXvtG5AdZd-LZgpPrURCgShyrToPw&callback=initMap&v=weekly" defer></script>
+	</body>
+	
+</html>
