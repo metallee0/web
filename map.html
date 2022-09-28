@@ -59,6 +59,19 @@
 					zoom: 15,
 					mapTypeId: "terrain",
 				});
+				
+				var myPos;
+				navigator.geolocation.getCurrentPosition(function(position){
+					myPos = position;
+				});
+				
+				const my_mark = google.maps.Marker({
+					position: myPos,
+					label: "My Location",
+					map: map,
+				});
+				
+				my_mark.setMap(map);
 			
 				infoWindow = new google.maps.InfoWindow();
 				const locationButton = document.createElement("button");
